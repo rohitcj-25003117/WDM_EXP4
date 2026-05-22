@@ -1,5 +1,5 @@
 ### EX4 Implementation of Cluster and Visitor Segmentation for Navigation patterns
-### DATE: 
+### DATE: 22/5/2026
 ### AIM: To implement Cluster and Visitor Segmentation for Navigation patterns in Python.
 ### Description:
 <div align= "justify">Cluster visitor segmentation refers to the process of grouping or categorizing visitors to a website, 
@@ -15,35 +15,36 @@
 
 ### Program:
 ```python
-# Visitor segmentation based on characteristics
-# read the data
-/*WRITE YOUR CODE HERE
+import pandas as pd
+df = pd.read_csv('clustervisitor.csv')
 
-# Perform segmentation based on characteristics (e.g., age groups)
-/*WRITE YOUR CODE HERE
-
+cluster = {
+    'Young': df['Age'] <= 30,
+    'Middle-aged': (df['Age'] > 30) & (df['Age'] <= 50),
+    'Elderly': df['Age'] > 50
+}
+count =[]
+for g, v in cluster.items():  
+    visitors = df[v] 
+    print(f"Visitors in {g} are\n",visitors)
+    print("Visitor count",len(visitors))
+    count.append(len(visitors))
 ```
 ### Output:
+![alt text](output/out.png)
 
 ### Visualization:
 ```python
-# Create a list to store counts of visitors in each age group
-/*WRITE YOUR CODE HERE
-
-# Count visitors in each age group
-/*WRITE YOUR CODE HERE
-    
-# Define age group labels and plot a bar chart
-/*WRITE YOUR CODE HERE
-
+import matplotlib.pyplot as plt
 plt.figure(figsize=(8, 6))
-plt.bar(age_group_labels, visitor_counts, color='skyblue')
+plt.bar(cluster.keys(), count, color='skyblue')
 plt.xlabel('Age Groups')
 plt.ylabel('Number of Visitors')
 plt.title('Visitor Distribution Across Age Groups')
 plt.show()
 ```
 ### Output:
-
+![alt text](output/plot.png)
 
 ### Result:
+Thus the cluster and visitor segmentation for navigation patterns was implemented successfully in python.
